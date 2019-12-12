@@ -23,20 +23,15 @@ export default {
       var self = this;
       window.setTimeout(() => {
         const term = searchTerm.toLowerCase();
-        axios.get("http://localhost:8000/suggestions/index/" + term).then(
-          response => {
+        axios
+          .get("http://localhost:8000/suggestions/index/" + term)
+          .then(response => {
             this.suggestionList = response.data.data;
             this.suggestions = [];
             this.suggestionList.forEach(function(item) {
-              console.log(item);
               self.suggestions.push(item.name);
             });
-            console.log(this.suggestions);
-          },
-          error => {
-            console.log("error " + error);
-          }
-        );
+          });
       }, 500);
     }
   }
